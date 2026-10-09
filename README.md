@@ -161,6 +161,12 @@ inventory-management-system/
 - Debug mode off in production
 - Secrets via environment variables only
 
+## Live demo
+
+**Backend + app:** https://ims-backend-8p33.onrender.com/login
+
+Sign in with the demo credentials provided separately.
+
 ## Author
 
 **Annbell Karuoya**
