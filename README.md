@@ -69,7 +69,6 @@ functionality and code quality.
 |---|---|
 | ![Reports](docs/screenshots/reports.png) | ![Users](docs/screenshots/users.png) |
 
-*(Add the screenshots under `docs/screenshots/` before pushing.)*
 
 ## Getting started
 
@@ -172,7 +171,7 @@ Explore the system with these credentials:
 | Field | Value |
 |---|---|
 | Username | `clerk1` |
-| Password | `clerkpass123` |
+| Password | `DemoClerk2026` |
 
 The clerk role can view the product catalogue and record stock movements. It
 cannot create products, edit pricing, manage users, or view the audit trail —
@@ -208,10 +207,6 @@ to the licensee's own operator once commercial terms are agreed.
 MIT — see [LICENSE](LICENSE). The MIT licence covers the source code in this
 repository. Operation of a hosted or managed instance is by separate agreement
 (see *Commercial use* above).
-
-**Backend + app:** https://ims-backend-8p33.onrender.com/login
-
-Sign in with the demo credentials provided separately.
 
 ## Author
 
