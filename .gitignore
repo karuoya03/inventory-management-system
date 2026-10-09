@@ -1,0 +1,30 @@
+# Environment — NEVER commit real secrets
+.env
+.env.*
+!.env.example
+.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Databases / dumps
+*.sqlite3
+*.sql.gz
+backups/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.log

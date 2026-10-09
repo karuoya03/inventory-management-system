@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Reports - Inventory Management System{% endblock %}
+{% block description %}Inventory valuation, stock movement, and low-stock reports.{% endblock %}
+
+{% block content %}
+<div class="page-head">
+  <h1>Reports</h1>
+</div>
+
+<section class="panel" aria-labelledby="downloads-heading">
+  <div class="panel-head">
+    <h2 id="downloads-heading">Download reports</h2>
+    <span class="muted small">CSV — opens in Excel or Google Sheets</span>
+  </div>
+
+  <div class="alert alert-error" data-download-error hidden role="alert"></div>
+
+  <div class="download-grid">
+    <div class="download-card">
+      <h3>Daily report</h3>
+      <p class="muted small">Every stock movement on a single day.</p>
+      <div class="field">
+        <label for="dl-date">Date</label>
+        <input id="dl-date" type="date">
+      </div>
+      <button class="button button-primary" type="button" data-download="daily">Download daily</button>
+    </div>
+
+    <div class="download-card">
+      <h3>Monthly summary</h3>
+      <p class="muted small">Day-by-day totals for one month.</p>
+      <div class="field">
+        <label for="dl-month">Month</label>
+        <input id="dl-month" type="month">
+      </div>
+      <button class="button button-primary" type="button" data-download="monthly">Download monthly</button>
+    </div>
+
+    <div class="download-card">
+      <h3>Yearly summary</h3>
+      <p class="muted small">Month-by-month totals for one year.</p>
+      <div class="field">
+        <label for="dl-year">Year</label>
+        <input id="dl-year" type="number" min="2000" max="2100" step="1">
+      </div>
+      <button class="button button-primary" type="button" data-download="yearly">Download yearly</button>
+    </div>
+
+    <div class="download-card">
+      <h3>Inventory snapshot</h3>
+      <p class="muted small">Every active product with current stock and valuation.</p>
+      <button class="button button-primary" type="button" data-download="inventory">Download snapshot</button>
+    </div>
+  </div>
+</section>
+
+<section class="panel" aria-labelledby="valuation-heading">
+  <div class="panel-head">
+    <h2 id="valuation-heading">Inventory valuation</h2>
+    <div class="filter-bar filter-bar-compact">
+      <div class="field">
+        <label for="v-group">Group by</label>
+        <select id="v-group">
+          <option value="category">Category</option>
+          <option value="supplier">Supplier</option>
+          <option value="none">Total only</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-error" data-valuation-error hidden role="alert"></div>
+  <div data-valuation-table aria-live="polite"><p class="muted">Loading...</p></div>
+</section>
+
+<section class="panel" aria-labelledby="movement-heading">
+  <div class="panel-head">
+    <h2 id="movement-heading">Stock movement</h2>
+    <form id="movement-form" class="filter-bar filter-bar-compact">
+      <div class="field">
+        <label for="m-from">From</label>
+        <input id="m-from" type="date" required>
+      </div>
+      <div class="field">
+        <label for="m-to">To</label>
+        <input id="m-to" type="date" required>
+      </div>
+      <div class="field field-buttons">
+        <button class="button" type="submit">Run report</button>
+      </div>
+    </form>
+  </div>
+  <div class="alert alert-error" data-movement-error hidden role="alert"></div>
+  <div data-movement-table aria-live="polite"><p class="muted">Pick a date range and run the report.</p></div>
+</section>
+
+<section class="panel" aria-labelledby="low-stock-heading">
+  <div class="panel-head">
+    <h2 id="low-stock-heading">Low stock</h2>
+    <a href="/products?low_stock_only=true" class="muted small">Open in products</a>
+  </div>
+  <div class="alert alert-error" data-lowstock-error hidden role="alert"></div>
+  <div data-lowstock-table aria-live="polite"><p class="muted">Loading...</p></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/reports.js" defer></script>
+{% endblock %}

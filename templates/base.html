@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Inventory Management System{% endblock %}</title>
+  <meta name="description" content="{% block description %}Web-based stock tracking for small-scale vendors.{% endblock %}">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  {% block header %}
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/dashboard">
+        <svg class="brand-mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="4" fill="#1f5f8b"/>
+          <rect x="7" y="7" width="18" height="4" fill="#ffffff"/>
+          <rect x="7" y="14" width="18" height="4" fill="#ffffff"/>
+          <rect x="7" y="21" width="18" height="4" fill="#ffffff"/>
+        </svg>
+        <span class="brand-name">Inventory Management System</span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-action="toggle-nav"
+              aria-controls="primary-nav" aria-expanded="false">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="visually-hidden">Toggle navigation</span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Main">
+        <ul>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="/transactions">Stock</a></li>
+          <li><a href="/reports">Reports</a></li>
+          <li data-admin-only hidden><a href="/users">Users</a></li>
+        </ul>
+        <div class="user-block">
+          <span class="user-name" data-user-name>Loading...</span>
+          <button class="button button-quiet" type="button" data-action="logout">Sign out</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+  {% endblock %}
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% block footer %}
+  <footer class="site-footer">
+    <div class="container">
+      <p>Inventory Management System.</p>
+    </div>
+  </footer>
+  {% endblock %}
+
+  <script src="/static/js/app.js" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

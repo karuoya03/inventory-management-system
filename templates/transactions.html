@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Stock movements - Inventory Management System{% endblock %}
+{% block description %}Record stock-in, stock-out, and adjustments. View the ledger.{% endblock %}
+
+{% block content %}
+<div class="page-head">
+  <h1>Stock movements</h1>
+</div>
+
+<section class="panel" aria-labelledby="new-txn-heading">
+  <div class="panel-head">
+    <h2 id="new-txn-heading">Record a movement</h2>
+  </div>
+
+  <div class="alert alert-error" data-new-error hidden role="alert"></div>
+  <div class="alert alert-success" data-new-success hidden role="status"></div>
+
+  <form id="txn-form" novalidate>
+    <div class="form-grid">
+      <div class="field">
+        <label for="t-product">Product</label>
+        <select id="t-product" name="product_id" required>
+          <option value="">Select a product…</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="t-type">Type</label>
+        <select id="t-type" name="type" required>
+          <option value="IN">Stock in</option>
+          <option value="OUT">Stock out</option>
+          <option value="ADJUSTMENT">Adjustment (set absolute count)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="t-quantity" data-quantity-label>Quantity</label>
+        <input id="t-quantity" name="quantity" type="number" min="0" step="1" required>
+        <span class="hint" data-quantity-hint>Number of units moved.</span>
+      </div>
+      <div class="field" data-unit-cost-field>
+        <label for="t-unit-cost">Unit cost (for stock-in)</label>
+        <input id="t-unit-cost" name="unit_cost" type="number" min="0" step="0.01">
+        <span class="hint">Optional. Updates the moving-average cost price.</span>
+      </div>
+      <div class="field">
+        <label for="t-reference">Reference</label>
+        <input id="t-reference" name="reference" type="text" maxlength="100"
+               placeholder="GRN-001, Sale #1024, ...">
+      </div>
+      <div class="field field-wide">
+        <label for="t-notes">Notes</label>
+        <textarea id="t-notes" name="notes" rows="2" maxlength="1000"></textarea>
+      </div>
+    </div>
+
+    <button class="button button-primary" type="submit">Post movement</button>
+  </form>
+</section>
+
+<section class="panel" aria-labelledby="ledger-heading">
+  <div class="panel-head">
+    <h2 id="ledger-heading">Ledger</h2>
+    <form id="ledger-filters" class="filter-bar filter-bar-compact">
+      <div class="field">
+        <label for="l-product">Product</label>
+        <select id="l-product"><option value="">All</option></select>
+      </div>
+      <div class="field">
+        <label for="l-type">Type</label>
+        <select id="l-type">
+          <option value="">All</option>
+          <option value="IN">IN</option>
+          <option value="OUT">OUT</option>
+          <option value="ADJUSTMENT">ADJUSTMENT</option>
+        </select>
+      </div>
+      <div class="field field-buttons">
+        <button class="button" type="submit">Apply</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="alert alert-error" data-ledger-error hidden role="alert"></div>
+  <div data-ledger-table aria-live="polite">
+    <p class="muted">Loading...</p>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/transactions.js" defer></script>
+{% endblock %}

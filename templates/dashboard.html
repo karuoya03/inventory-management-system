@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Inventory Management System{% endblock %}
+{% block description %}Overview of stock levels, inventory value, and recent movements.{% endblock %}
+
+{% block content %}
+<div class="page-head">
+  <h1>Dashboard</h1>
+  <a class="button button-primary" href="/transactions">Record stock movement</a>
+</div>
+
+<section class="stat-grid" aria-label="Inventory summary">
+  <article class="stat">
+    <p class="stat-label">Active products</p>
+    <p class="stat-value" data-stat="total_products">-</p>
+  </article>
+  <article class="stat">
+    <p class="stat-label">Units in stock</p>
+    <p class="stat-value" data-stat="total_units_in_stock">-</p>
+  </article>
+  <article class="stat">
+    <p class="stat-label">Inventory value (cost)</p>
+    <p class="stat-value" data-stat="inventory_cost_value">-</p>
+  </article>
+  <article class="stat">
+    <p class="stat-label">Items at or below reorder level</p>
+    <p class="stat-value stat-warn" data-stat="low_stock_count">-</p>
+  </article>
+</section>
+
+<section class="panel" aria-labelledby="low-stock-heading">
+  <div class="panel-head">
+    <h2 id="low-stock-heading">Low stock</h2>
+    <a href="/products?low_stock_only=true" class="muted small">View all products</a>
+  </div>
+  <div class="alert alert-error" data-low-stock-error hidden role="alert"></div>
+  <div data-low-stock-table aria-live="polite">
+    <p class="muted">Loading...</p>
+  </div>
+</section>
+
+<section class="panel" aria-labelledby="recent-heading">
+  <div class="panel-head">
+    <h2 id="recent-heading">Recent stock movements</h2>
+    <a href="/transactions" class="muted small">View full ledger</a>
+  </div>
+  <div class="alert alert-error" data-recent-error hidden role="alert"></div>
+  <div data-recent-table aria-live="polite">
+    <p class="muted">Loading...</p>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/dashboard.js" defer></script>
+{% endblock %}

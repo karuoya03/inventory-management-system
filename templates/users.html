@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Users - Inventory Management System{% endblock %}
+{% block description %}Create and manage staff accounts.{% endblock %}
+
+{% block content %}
+<div class="page-head">
+  <h1>Staff accounts</h1>
+</div>
+
+<section class="panel" aria-labelledby="create-user-heading">
+  <div class="panel-head">
+    <h2 id="create-user-heading">Create a staff account</h2>
+  </div>
+
+  <div class="alert alert-error" data-create-error hidden role="alert"></div>
+  <div class="alert alert-success" data-create-success hidden role="status"></div>
+
+  <form id="create-user-form" novalidate>
+    <div class="form-grid">
+      <div class="field">
+        <label for="new-full_name">Full name</label>
+        <input id="new-full_name" name="full_name" type="text" required minlength="2" maxlength="120">
+      </div>
+      <div class="field">
+        <label for="new-username">Username</label>
+        <input id="new-username" name="username" type="text" required minlength="3" maxlength="50">
+      </div>
+      <div class="field">
+        <label for="new-email">Email</label>
+        <input id="new-email" name="email" type="email" required maxlength="255">
+      </div>
+      <div class="field">
+        <label for="new-role">Role</label>
+        <select id="new-role" name="role">
+          <option value="clerk">Clerk</option>
+          <option value="manager">Manager</option>
+          <option value="admin">Administrator</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="new-password">Password</label>
+        <input id="new-password" name="password" type="password" required minlength="10" maxlength="72">
+        <span class="hint">At least 10 characters, with at least one letter and one digit.</span>
+      </div>
+    </div>
+
+    <button class="button button-primary" type="submit">Create account</button>
+  </form>
+</section>
+
+<section class="panel" aria-labelledby="users-heading">
+  <div class="panel-head">
+    <h2 id="users-heading">All accounts</h2>
+  </div>
+
+  <div class="alert alert-error" data-users-error hidden role="alert"></div>
+  <div data-users-table aria-live="polite">
+    <p class="muted">Loading...</p>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/users.js" defer></script>
+{% endblock %}

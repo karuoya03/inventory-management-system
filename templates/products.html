@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Products - Inventory Management System{% endblock %}
+{% block description %}Search, create, and update the products in your inventory.{% endblock %}
+
+{% block content %}
+<div class="page-head">
+  <h1>Products</h1>
+  <button class="button button-primary" type="button" data-action="new-product"
+          data-manager-only hidden>Add product</button>
+</div>
+
+<section class="panel" aria-label="Filters">
+  <form id="filters" class="filter-bar">
+    <div class="field">
+      <label for="filter-q">Search</label>
+      <input id="filter-q" type="search" placeholder="SKU or name" maxlength="150">
+    </div>
+
+    <div class="field">
+      <label for="filter-category">Category</label>
+      <select id="filter-category"><option value="">All</option></select>
+    </div>
+
+    <div class="field">
+      <label for="filter-supplier">Supplier</label>
+      <select id="filter-supplier"><option value="">All</option></select>
+    </div>
+
+    <div class="field field-check">
+      <input id="filter-low" type="checkbox">
+      <label for="filter-low">Low stock only</label>
+    </div>
+
+    <div class="field field-buttons">
+      <button class="button" type="submit">Apply</button>
+      <button class="button button-quiet" type="reset">Clear</button>
+    </div>
+  </form>
+</section>
+
+<section class="panel" aria-label="Product list">
+  <div class="alert alert-error" data-products-error hidden role="alert"></div>
+  <div class="alert alert-success" data-products-success hidden role="status"></div>
+  <div data-products-table aria-live="polite">
+    <p class="muted">Loading...</p>
+  </div>
+</section>
+
+<dialog id="product-dialog" class="dialog" aria-labelledby="product-dialog-title">
+  <form id="product-form" method="dialog" novalidate>
+    <h2 id="product-dialog-title" data-dialog-title>Add product</h2>
+
+    <div class="alert alert-error" data-product-error hidden role="alert"></div>
+
+    <input type="hidden" name="product_id" value="">
+
+    <div class="form-grid">
+      <div class="field">
+        <label for="p-sku">SKU</label>
+        <input id="p-sku" name="sku" type="text" required minlength="2" maxlength="50"
+               pattern="[A-Za-z0-9._-]+" data-edit-locked>
+        <span class="hint">Letters, digits, dot, underscore, hyphen.</span>
+      </div>
+      <div class="field">
+        <label for="p-name">Name</label>
+        <input id="p-name" name="name" type="text" required minlength="2" maxlength="150">
+      </div>
+
+      <div class="field">
+        <label for="p-category">Category</label>
+        <input id="p-category" name="category_name" type="text" list="categories-list"
+               maxlength="80" placeholder="Type or pick a category">
+        <span class="hint">Type a new name to create it on save.</span>
+        <datalist id="categories-list"></datalist>
+      </div>
+
+      <div class="field">
+        <label for="p-supplier">Supplier</label>
+        <input id="p-supplier" name="supplier_name" type="text" list="suppliers-list"
+               maxlength="150" placeholder="Type or pick a supplier">
+        <span class="hint">Type a new name to create it on save.</span>
+        <datalist id="suppliers-list"></datalist>
+      </div>
+
+      <div class="field">
+        <label for="p-unit">Unit</label>
+        <input id="p-unit" name="unit" type="text" value="pcs" required maxlength="20">
+      </div>
+      <div class="field">
+        <label for="p-cost">Cost price</label>
+        <input id="p-cost" name="cost_price" type="number" min="0" step="0.01" value="0.00" required>
+      </div>
+      <div class="field">
+        <label for="p-price">Selling price</label>
+        <input id="p-price" name="unit_price" type="number" min="0" step="0.01" value="0.00" required>
+      </div>
+      <div class="field">
+        <label for="p-reorder">Low stock threshold</label>
+        <input id="p-reorder" name="reorder_level" type="number" min="0" step="1" value="10" required>
+        <span class="hint">Flag the product as low stock at or below this quantity.</span>
+      </div>
+      <div class="field field-wide">
+        <label for="p-description">Description</label>
+        <textarea id="p-description" name="description" rows="3" maxlength="2000"></textarea>
+      </div>
+    </div>
+
+    <div class="dialog-actions">
+      <button class="button button-quiet" type="button" data-action="close-dialog">Cancel</button>
+      <button class="button button-primary" type="submit" data-submit-label="Save product">Save product</button>
+    </div>
+  </form>
+</dialog>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/products.js" defer></script>
+{% endblock %}
