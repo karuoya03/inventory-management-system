@@ -163,6 +163,52 @@ inventory-management-system/
 
 ## Live demo
 
+A sample deployment is running at:
+
+**https://ims-backend-8p33.onrender.com/login**
+
+Explore the system with these credentials:
+
+| Field | Value |
+|---|---|
+| Username | `clerk1` |
+| Password | `clerkpass123` |
+
+The clerk role can view the product catalogue and record stock movements. It
+cannot create products, edit pricing, manage users, or view the audit trail —
+those actions are reserved for manager- and admin-level accounts.
+
+> **Cold-start note:** the demo runs on Render's free tier, which sleeps after
+> 15 minutes of inactivity. The first request after idle takes 30–50 seconds to
+> wake the server. Subsequent requests are fast.
+
+## Commercial use
+
+This repository is a **demonstration build**. The source code is public for
+review and evaluation. To deploy it for a real business — either as a
+self-hosted licensed deployment or as a managed SaaS — please contact me to
+agree on terms.
+
+After an agreement is reached, you will receive:
+
+- A personalised **administrator account** with full access to user management,
+  pricing, and audit history
+- A private instance (self-hosted or fully managed) configured for your business
+- Assistance with initial setup: your categories, suppliers, and product
+  catalogue
+
+**Contact:** karuoyaannbell6@gmail.com
+
+Administrator credentials are not published here. The admin role grants full
+access to user management, pricing, and the audit trail, and is provided only
+to the licensee's own operator once commercial terms are agreed.
+
+## License
+
+MIT — see [LICENSE](LICENSE). The MIT licence covers the source code in this
+repository. Operation of a hosted or managed instance is by separate agreement
+(see *Commercial use* above).
+
 **Backend + app:** https://ims-backend-8p33.onrender.com/login
 
 Sign in with the demo credentials provided separately.
@@ -173,6 +219,3 @@ Sign in with the demo credentials provided separately.
 - GitHub: [@karuoya03](https://github.com/karuoya03)
 - Email: karuoyaannbell6@gmail.com
 
-## License
-
-MIT — see [LICENSE](LICENSE).
